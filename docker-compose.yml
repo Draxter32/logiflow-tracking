@@ -1,0 +1,37 @@
+# Orquestación de servicios: aplicación + base de datos PostgreSQL.
+# Las credenciales NO viven aquí: se leen desde un archivo .env (ignorado por Git)
+# o, en producción, lo genera el pipeline de CD desde los secretos de GitHub.
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-logiflow}
+      POSTGRES_USER: ${POSTGRES_USER:-logiflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Defina POSTGRES_PASSWORD en .env}
+    volumes:
+      - pgdata:/var/lib/postgresql/data   # persistencia de datos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    # Sin "ports": la base de datos NO se expone fuera de la red interna de Docker.
+
+  app:
+    image: ${APP_IMAGE:-ghcr.io/draxter32/logiflow-tracking}:${APP_TAG:-latest}
+    build:
+      context: .
+      args:
+        APP_VERSION: ${APP_TAG:-dev}
+    restart: unless-stopped
+    environment:
+      DATABASE_URL: postgresql+psycopg2://${POSTGRES_USER:-logiflow}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB:-logiflow}
+    ports:
+      - "${APP_PORT:-80}:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+
+volumes:
+  pgdata:
