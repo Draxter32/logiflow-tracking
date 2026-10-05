@@ -2,7 +2,7 @@ import os
 from contextlib import asynccontextmanager
 
 from fastapi import Depends, FastAPI, HTTPException
-from sqlalchemy import select, text
+from sqlalchemy import func, select, text
 from sqlalchemy.orm import Session
 
 from app import models, schemas
@@ -43,8 +43,17 @@ def create_delivery(payload: schemas.DeliveryCreate, db: Session = Depends(get_d
 
 
 @app.get("/deliveries", response_model=list[schemas.DeliveryOut])
-def list_deliveries(db: Session = Depends(get_db)):
-    return db.scalars(select(models.Delivery).order_by(models.Delivery.id)).all()
+def list_deliveries(status: schemas.Status | None = None, db: Session = Depends(get_db)):
+    query = select(models.Delivery).order_by(models.Delivery.id)
+    if status:
+        query = query.where(models.Delivery.status == status)
+    return db.scalars(query).all()
+
+
+@app.get("/stats")
+def stats(db: Session = Depends(get_db)):
+    rows = db.execute(select(models.Delivery.status, func.count()).group_by(models.Delivery.status)).all()
+    return {"total": sum(n for _, n in rows), "by_status": {s: n for s, n in rows}}
 
 
 def _get_or_404(db: Session, tracking_code: str) -> models.Delivery:
