@@ -82,7 +82,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts
       - name: Desplegar y verificar en staging
-        run: scripts/deploy.sh /opt/logiflow-staging 8081
+        run: bash scripts/deploy.sh /opt/logiflow-staging 8081
 
   deploy-production:
     name: Promover a producción
@@ -112,7 +112,7 @@ jobs:
           chmod 600 ~/.ssh/deploy_key
           ssh-keyscan -H "$EC2_HOST" >> ~/.ssh/known_hosts
       - name: Desplegar y verificar en producción
-        run: scripts/deploy.sh /opt/logiflow 80
+        run: bash scripts/deploy.sh /opt/logiflow 80
       - name: Prueba de humo pública (URL funcional)
         run: |
           curl -fsS "http://${EC2_HOST}/health"
