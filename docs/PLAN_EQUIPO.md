@@ -1,17 +1,24 @@
-# Roles y orden de Pull Requests (ejemplo para 3 integrantes)
+# Roles y registro de pull requests
 
-Cada PR lo abre una persona y lo aprueba OTRA. Título del PR = mensaje de commit convencional (se usa "Squash and merge").
+El proyecto se desarrolla de forma **individual**, con autorización del docente. El autor (`Draxter32`) asume todos los roles
+y la revisión de los pull requests la realiza una segunda cuenta declarada (`crisncs231`).
 
-| Orden | Autor | Rama | Contenido | Revisa |
-|---|---|---|---|---|
-| 0 | A | (directo a main) | README.md y .gitignore iniciales; luego protección de main | - |
-| 1 | B | docs/requisitos-y-flujo | docs/REQUISITOS.md, GIT_WORKFLOW.md, CONTRIBUTING.md, plantilla de PR, CODEOWNERS | A |
-| 2 | A | feat/api-base | app/, tests/, requirements*, pyproject.toml | C |
-| 3 | C | infra/terraform-aws | infra/terraform/ | B |
-| 4 | B | build/contenedores | Dockerfile, .dockerignore, docker-compose.yml, .env.example | A |
-| 5 | A | ci/pipeline-integracion | .github/workflows/ci.yml (después: proteger main CON checks) | C |
-| 6 | C | ci/entrega-continua | cd.yml, scripts/, docs/ARQUITECTURA.md, DEPLOY.md | B |
-| 7 | B | feat/filtro-estado | parche release/v1.1.0.patch (versión 1.1.0) | A |
-| 8 | cualquiera | docs/evidencias | log de terraform apply y .terraform.lock.hcl | otro |
+| Rol | Responsable | Alcance |
+|---|---|---|
+| Desarrollo backend | Draxter32 | API FastAPI, modelos y pruebas |
+| DevOps / IaC | Draxter32 | Terraform, pipeline de CI y entrega continua, secretos |
+| Contenedores / QA | Draxter32 | Dockerfile, docker-compose, pruebas de humo y evidencias |
+| Revisión de pull requests | crisncs231 | Aprobación de los PR antes de fusionar |
 
-Con 2 integrantes se alternan; con 4 se reparten los PR 1 a 8. Todos deben quedar con al menos 1 PR y varios commits.
+## Pull requests (todos con commit convencional, aprobados por la cuenta revisora y fusionados con squash)
+
+| PR | Contenido |
+|---|---|
+| #1 | Infraestructura como código (Terraform) |
+| #2 | API de seguimiento de entregas y pruebas |
+| #3 | Dockerfile y docker-compose |
+| #4 | Documentación del proyecto |
+| #5 | Entrega continua (CD) con staging y producción |
+| #6 | Pipeline de integración continua (CI) |
+| #7 | Corrección: ejecutar el script de despliegue con bash |
+| #8 | Versión 1.1.0: filtro por estado y endpoint de estadísticas |

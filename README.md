@@ -13,9 +13,8 @@ Dockerfile           imagen de la aplicación
 docker-compose.yml   servicios: app + PostgreSQL (volumen persistente)
 .github/workflows/   ci.yml (integración continua) y cd.yml (entrega continua)
 infra/terraform/     infraestructura como código del ambiente AWS
-release/             parche de la versión 1.1.0
-scripts/             protección de rama y prueba de humo
-docs/                requisitos, arquitectura, flujo Git, despliegue, plan de equipo
+scripts/             despliegue, protección de rama y prueba de humo
+docs/                requisitos, arquitectura, flujo Git, despliegue, plan de trabajo
 ```
 
 ## Ejecutar localmente
