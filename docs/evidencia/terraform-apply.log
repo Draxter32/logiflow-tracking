@@ -1,0 +1,29 @@
+﻿aws_vpc.main: Creating...
+aws_key_pair.deploy: Creating...
+aws_key_pair.deploy: Creation complete after 1s [id=logiflow-deploy]
+aws_vpc.main: Still creating... [00m10s elapsed]
+aws_vpc.main: Creation complete after 14s [id=vpc-06c036650abdbfc62]
+aws_internet_gateway.igw: Creating...
+aws_subnet.public: Creating...
+aws_security_group.app: Creating...
+aws_internet_gateway.igw: Creation complete after 1s [id=igw-013930e850eb1e3fe]
+aws_route_table.public: Creating...
+aws_route_table.public: Creation complete after 1s [id=rtb-092efe8e56199f047]
+aws_security_group.app: Creation complete after 3s [id=sg-020ea8a036a192223]
+aws_subnet.public: Still creating... [00m10s elapsed]
+aws_subnet.public: Creation complete after 11s [id=subnet-0397f6e400166b767]
+aws_route_table_association.public: Creating...
+aws_instance.app: Creating...
+aws_route_table_association.public: Creation complete after 1s [id=rtbassoc-0741bdf9316f70d4c]
+aws_instance.app: Still creating... [00m10s elapsed]
+aws_instance.app: Creation complete after 14s [id=i-0f28a6fbe70c1dad4]
+aws_eip.app: Creating...
+aws_eip.app: Creation complete after 3s [id=eipalloc-036113c0959728f8d]
+
+Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+app_url = "http://16.59.4.142"
+public_ip = "16.59.4.142"
+ssh_command = "ssh ubuntu@16.59.4.142"
