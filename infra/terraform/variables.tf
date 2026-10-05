@@ -5,7 +5,7 @@ variable "aws_region" {
 }
 
 variable "instance_type" {
-  description = "Tipo de instancia EC2 (t3.micro es elegible para la capa gratuita)"
+  description = "Tipo de instancia EC2 (t3.micro es de bajo costo y se cubre con los créditos del plan gratuito)"
   type        = string
   default     = "t3.micro"
 }
