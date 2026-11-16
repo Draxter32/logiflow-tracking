@@ -1,8 +1,0 @@
-Guarde aquí logs y capturas (sin credenciales).
-
-Evidencias de la Evaluación 3 a guardar aquí (sin credenciales):
-- cloudwatch-dashboard.png, cloudwatch-logs.png, cloudwatch-alarmas.png, correo-alarma.png
-- cloudtrail-trail.png, cloudtrail-evento.png, s3-bucket-privado.png
-- iam-rol-politica.png, ssm-session-manager.png
-- terraform-apply-eva3.log, salida de scripts/verify_monitoring.sh
-- ci-verde.png (job de pruebas con tests/infra)
