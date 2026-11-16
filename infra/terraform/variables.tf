@@ -26,3 +26,15 @@ variable "project_name" {
   type        = string
   default     = "logiflow"
 }
+
+variable "alert_email" {
+  description = "Correo que recibe las alertas de CloudWatch (vacio = sin suscripcion). Debe confirmarse desde el correo."
+  type        = string
+  default     = ""
+}
+
+variable "log_retention_days" {
+  description = "Dias que se conservan los logs en CloudWatch"
+  type        = number
+  default     = 30
+}

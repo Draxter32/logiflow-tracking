@@ -2,3 +2,6 @@
 aws_region     = "us-east-1"
 instance_type  = "t3.micro"
 ssh_public_key = "ssh-ed25519 AAAA... usuario@equipo"
+
+# Correo que recibirá las alertas de CloudWatch (confirmar la suscripción desde el correo de AWS)
+alert_email = "correo@ejemplo.cl"

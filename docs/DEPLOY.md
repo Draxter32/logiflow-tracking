@@ -50,3 +50,11 @@ cd infra/terraform && terraform destroy
 ## Compromiso conocido
 El SSH está abierto a Internet (protegido solo con clave) porque los runners de GitHub usan IPs dinámicas.
 Mejora futura: AWS Systems Manager Session Manager + OIDC, sin puerto 22.
+
+## 5. Monitoreo, trazabilidad y acceso sin SSH
+Tras `terraform apply` (con `alert_email` en `terraform.tfvars`):
+1. Confirme la suscripción desde el correo que envía AWS (si no, no llegan alertas).
+2. Espere 2-3 minutos a que SSM instale el agente y revise: `./scripts/verify_monitoring.sh us-east-2`.
+3. Dashboard: CloudWatch > Dashboards > `logiflow-operacion`.
+4. Acceso a la instancia sin puerto 22: `terraform output ssm_session_command` (requiere el plugin Session Manager de AWS CLI).
+5. Para eliminar todo: `terraform destroy` (el bucket de CloudTrail se vacía automáticamente).
