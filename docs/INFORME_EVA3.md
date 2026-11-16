@@ -2,6 +2,7 @@
 
 **Asignatura:** Fundamentos de DevOps · **Carrera:** Ingeniería en Informática · **Sección:** P TILE23
 **Estudiante:** Cristopher Menares · **Repositorio:** https://github.com/Draxter32/logiflow-tracking
+**Video explicativo:** https://www.youtube.com/watch?v=MK03RpNn0tY
 
 ## 1. Caso y objetivo
 
